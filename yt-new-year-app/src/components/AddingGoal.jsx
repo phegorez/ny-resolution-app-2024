@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { clickAnimation } from "../styles/animate";
+import { addGoal } from "../store/goalsSlice";
+import { useDispatch } from 'react-redux'
 
 const Container = styled.div`
 	display: flex;
@@ -44,10 +46,19 @@ const Button = styled.button`
 `;
 
 const AddingGoal = () => {
+
+	const [goalInput, setGoalInput] = useState('')
+	const dispatch = useDispatch()
+
+	const handleAddGoal = () => {
+		dispatch(addGoal({name: goalInput}))
+		setGoalInput('')
+	};
+
 	return (
 		<Container>
-			<Input placeholder="Add your goal ..." />
-			<Button>+</Button>
+			<Input value={goalInput} onChange={(e) => setGoalInput(e.target.value)} placeholder="Add your goal ..." />
+			<Button onClick={handleAddGoal}>+</Button>
 		</Container>
 	);
 };

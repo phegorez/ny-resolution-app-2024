@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { clickAnimation } from "../styles/animate";
 
+import { useDispatch } from "react-redux";
+
 const Container = styled.div`
 	display: flex;
 	align-items: center;
@@ -40,6 +42,7 @@ const Button = styled.button`
 `;
 
 const GoalItem = ({ isDone, name, onClick }) => {
+	const dispatch = useDispatch()
 	return (
 		<Container $isdone={isDone}>
 			<Button $isdone={isDone} onClick={onClick}>
